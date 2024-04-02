@@ -1,7 +1,14 @@
 import mongoose from 'mongoose';
 
-const Animal = new mongoose.Schema({
-    _id : mongoose.Schema.Types.ObjectId,
+const animalSchema = new mongoose.Schema({
+    ownerId : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : true
+    },
+    profilePicture : {
+        type : String,
+        required : true
+    },
     name : {
         type : String,
         required : true
@@ -10,18 +17,15 @@ const Animal = new mongoose.Schema({
         type : String,
         required : true
     },
-    owner : {
-        type : mongoose.Schema.Types.ObjectId,
-        required : true
-    },
     hoursTrained : {
         type : Number,
         required : true
     },
-    profilePicture : {
-        type : String,
+    birthday : {
+        type : Date,
         required : true
-    }
+    },
+    note : String
 });
 
-export default mongoose.model("Animal", animalSchema);
+export default mongoose.models?.Animal || mongoose.model("Animal", animalSchema);

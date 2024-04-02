@@ -2,12 +2,7 @@
 import mongoose from 'mongoose'
 
 const trainingLogSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-    animal: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
@@ -15,18 +10,19 @@ const trainingLogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    animalId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    hours: { 
+        type: Number,
+        required: true
+    },
     date: {
         type: Date,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
-    hours: {
-        type: Number,
-        required: true
-    }
+    note: String
 });
 
-export default mongoose.model("TrainingLog", trainingLogSchema);
+export default mongoose.models?.TrainingLog || mongoose.model("TrainingLog", trainingLogSchema);
