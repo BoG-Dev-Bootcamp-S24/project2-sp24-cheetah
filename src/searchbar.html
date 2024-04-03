@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html style="margin: 0px 0;">
+  <head>
+    <title>Nithyaa Bala</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .search-bar-container {
+        position: relative;
+        margin-left: 70px;
+      }
+
+      #search-icon {
+        position: absolute;
+        left: 20px; /* Adjust position as needed */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px; /* Adjust size as needed */
+        height: auto; /* Adjust size as needed */
+      }
+
+      #search-bar {
+        padding-left: 48px; /* Adjust to accommodate the icon */
+        width: 400px; /* Adjust width as needed */
+      }
+      #line {
+        margin-top: 10px; /* Add margin top to the line */
+      }
+
+      #profilepic {
+        margin-left: 20px; /* Add left margin for the profile picture */
+      }
+
+      /* Change font to Oswald for the "Progress" text */
+      #menu .menu-item {
+        font-family: 'Oswald', sans-serif;
+      }
+    </style>
+  </head>
+  <body style="margin: 10px 0;">
+    <div id="menu" class="flex items-center">
+      <a class="menu-item" id="store-link">
+        <img id="profilepic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="40" height="40"/> <!-- Adjust width and height as needed -->
+      </a>
+      <a class="menu-item text-2xl font-bold mr-4">Progress</a>
+      <div class="search-bar-container">
+        <img id="search-icon" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/searchLogo.png" alt="search icon"/>
+        <input id="search-bar" class="ml-2 px-2 py-1 rounded-md border border-gray-500 w-full" placeholder="Search..."/> <!-- Added w-full class -->
+      </div>
+    </div>
+    
+    <hr id="line">
+  </body>
+</html>
