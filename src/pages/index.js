@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import TrainingLog from "../components/TrainingLog";
+import ProfileCard from "@/components/ProfileCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,6 +13,7 @@ export default function Home() {
     <div className="flex flex-col items-left">
       <TrainingLog />
     </div>
+    <ProfileCard />
     </main>
   );
 }
