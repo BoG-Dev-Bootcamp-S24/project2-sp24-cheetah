@@ -1,0 +1,47 @@
+<html style="margin: 0px 0; height: 100%;">
+  <head>
+    <title>Nithyaa Bala</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        height: 100%;
+        padding: 10px;
+      }
+      .text-grey {
+        color: #565555; /* or any other grey color code */
+      }
+      #profilepic {
+        margin-right: 10px; /* Adjust the margin-right value for the desired space */
+      }
+      #line {
+        width: 18%; /* Adjust the width as needed */
+        border-top: 1px solid #000; /* Adjust the color and thickness as needed */
+        margin-bottom: 10px; /* Adjust the margin-bottom to create space between line and content */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <hr id="line">
+      <div id="menu" class="flex items-center">
+        <a class="menu-item" id="store-link">
+          <img id="profilepic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60"/> 
+        </a>
+        <div class="flex flex-col items-start">
+          <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+          <a class="text-grey">Admin</a>
+        </div>
+        <img id="logoutLogo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo" class="ml-auto">
+      </div>
+    </div>
+  </body>
+</html>
