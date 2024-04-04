@@ -13,7 +13,6 @@ export default function Home() {
     <div className="flex flex-col items-left">
       <TrainingLog />
     </div>
-    <ProfileCard />
     </main>
   );
 }
