@@ -46,7 +46,7 @@ const TrainingLog = ({ log, onEdit }) => {
   return (
     <div className="flex justify-between rounded-2xl bg-slate-300 shadow-md mb-4">
       <div className="flex">
-        <div className="flex flex-col align-middle justify-center text-center p-4 bg-white border mr-6 rounded-s-2xl w-28">
+        <div className="flex flex-col align-middle justify-center text-center p-4 bg-blue-500 border mr-6 rounded-s-2xl w-28">
           <Typography variant="h2" className="text-black">{day}</Typography>
           <div className="flex flex-row align-middle justify-center text-center mx-2">
             <Typography variant="body1" className="text-black mx-1">{monthNames[parseInt(month, 10) - 1]}</Typography>
@@ -67,7 +67,7 @@ const TrainingLog = ({ log, onEdit }) => {
         </div>
       </div>
       <div className="flex align-middle justify-end">
-        <Button onClick={onEdit} variant="contained" color="primary" className="flex m-8 rounded-full">
+        <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full">
           Edit
         </Button>
       </div>
@@ -76,7 +76,7 @@ const TrainingLog = ({ log, onEdit }) => {
 };
 
 const TrainingLogList = ({ logs, onEdit }) => (
-  <div className="space-y-4 bg-zinc-400">
+  <div className="space-y-4 bg-white">
     {logs.map(log => (
       <TrainingLog key={log.id} log={log} onEdit={() => onEdit(log)} />
     ))}
@@ -121,7 +121,7 @@ const TrainingLogForm = ({ open, handleClose, log }) => {
           <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} multiline className="mb-4" />
           <TextField type="number" label="Hours Logged" value={hoursLogged} onChange={(e) => setHoursLogged(e.target.value)} className="mb-4" />
           <TextField label="Animal ID" value={animalId} onChange={(e) => setAnimalId(e.target.value)} className="mb-4" />
-          <Button type="submit" variant="contained" className="mt-4" backgroundColor={blueGrey}>
+          <Button type="submit" variant="contained" className="bg-blue-500 hover:bg-blue-700 mt-4">
             {log ? 'Update' : 'Submit'}
           </Button>
         </form>
@@ -145,14 +145,14 @@ const TrainingPage = () => {
   };
 
   return (
-    <div className="flex-col container mx-auto p-4 bg-zinc-400">
-      <div className="flex justify-between bg-zinc-400">
+    <div className="flex-col container mx-auto p-4 bg-white">
+      <div className="flex justify-between bg-white">
         <Typography variant="h4" className="text-black" gutterBottom>Training Logs</Typography>
-        <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right mb-4">
+        <Button onClick={() => setOpen(true)} variant="contained" className="bg-blue-500 hover:bg-blue-700 float-right mb-4">
           Add Training Log
         </Button>
       </div>
-      <div className="flex-col bg-zinc-400">
+      <div className="flex-col bg-white">
         <TrainingLogForm open={open} handleClose={handleClose} log={editingLog} />
         <TrainingLogList logs={trainingLogs} onEdit={handleEdit} />
       </div>
