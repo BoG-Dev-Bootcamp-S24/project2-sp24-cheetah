@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, TextField, Typography } from '@mui/material';
-
+import { create } from '@mui/material/styles/createTransitions';
 
 const trainingLogs = [
   {
@@ -57,6 +57,24 @@ const TrainingLogList = ({ logs, onEdit }) => (
   </div>
 );
 
+async function createLog(title, description, hoursLogged, animalId) {
+  let res = await fetch("/api/training", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          "userId": "66089af0c3d1112d02a879ed",
+          "title": title,
+          "animalId": animalId,
+          "hours": hoursLogged,
+          "date": Date(),
+          "note": description
+      })
+  })
+  return res;
+}
+
 const TrainingLogForm = ({ open, handleClose }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -64,12 +82,17 @@ const TrainingLogForm = ({ open, handleClose }) => {
   const [animalId, setAnimalId] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (title && description && hoursLogged && animalId) {
-
-      handleClose();
+      let res = await createLog(title, description, hoursLogged, animalId);
+      console.log(res);
+      if (res.status === 200) {
+        handleClose();
+      } else {
+        setError('Error creating Training Log');
+      }
     } else {
       setError('Please fill in all fields.');
     }

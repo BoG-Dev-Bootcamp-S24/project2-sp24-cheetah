@@ -16,7 +16,7 @@ export default function Home() {
         <ProfileCard />
         <div className="flex flex-col w-full">
           <AnimalPage />
-          {/* <TrainingLog /> */}
+          <TrainingLog />
         </div>
       </div>
     </div>
