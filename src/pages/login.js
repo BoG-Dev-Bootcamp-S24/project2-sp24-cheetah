@@ -1,6 +1,8 @@
 import Image from "next/image"
 import quarterCircle from "../../public/images/quarterCircle.png"
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+const UserContext = createContext(null);
 
 export default function Login() {
     const [email, setEmail] = useState("");

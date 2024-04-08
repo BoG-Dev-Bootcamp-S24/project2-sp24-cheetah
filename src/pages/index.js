@@ -9,12 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   
   return (
-    <main
-      className={`flex min-h-screen flex-col justify-center p-24 bg-white`}
-    >
-    <div className="flex flex-col items-left">
-      <TrainingLog />
+    <div className="flex flex-col">
+      <SearchBar />
+      <div className="flex flex-row">
+        <ProfileCard />
+        <TrainingLog />
+      </div>
     </div>
-    </main>
   );
 }
