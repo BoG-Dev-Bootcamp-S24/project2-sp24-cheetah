@@ -1,5 +1,10 @@
 import { useContext, useEffect } from "react";
 import AuthContext from "@/components/AuthContext";
+import SearchBar from "@/components/SearchBar";
+import AnimalPage from "@/components/AnimalPage";
+import ProfileCard from "@/components/ProfileCard";
+import TrainingPage from "@/components/TrainingLog";
+
 
 export default function Home() {
   const {contextLogin} = useContext(AuthContext);
@@ -14,7 +19,6 @@ export default function Home() {
   }, []);
 
   return (
-<<<<<<< HEAD
     <main
       className={`flex min-h-screen flex-col justify-center p-24 bg-white`}
     >
@@ -22,11 +26,8 @@ export default function Home() {
       <SearchBar />
       <AnimalPage />
       <ProfileCard />
-      <TrainingLog />
+      <TrainingPage />
     </div>
     </main>
-=======
-    <></>
->>>>>>> 19658bc93bb282b7fc622b4ff6fd49c7c880ca98
   );
 }
