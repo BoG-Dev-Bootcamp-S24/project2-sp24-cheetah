@@ -2,9 +2,9 @@ import React from 'react';
 
 const SearchBar = () => {
     return (
-        <html style={{ margin: '0px 0' }}>
-            <body style={{ margin: '10px 0' }}>
-                <div id="menu" className="flex items-center">
+        <div className="pl-6 py-3 border-b-4 border-gray-400">
+            <div id="menu" className="flex items-center justify-between">
+                <div className="flex items-center w-40">
                     <a className="menu-item" id="store-link">
                         <img
                             id="profilepic"
@@ -14,25 +14,25 @@ const SearchBar = () => {
                             height="40"
                         />
                     </a>
-                    <a className="menu-item text-2xl font-bold mr-4">Progress</a>
-                    <div className="relative ml-70">
-                        <img
-                            id="search-icon"
-                            src="images/searchLogo.png"
-                            alt="search icon"
-                            className="absolute left-20 top-1/2 transform -translate-y-1/2 w-5 h-auto"
-                        />
-                        <input
-                            id="search-bar"
-                            className="ml-2 px-2 py-1 rounded-md border border-gray-500 w-400"
-                            placeholder="Search..."
-                        />
-                    </div>
+                    <a className="menu-item text-2xl font-bold ml-1">Progress</a>
                 </div>
-
-                <hr className="mt-10" />
-            </body>
-        </html>
+                {/* <div className="relative ml-70"> */}
+                    {/* <img
+                        id="search-icon"
+                        src="images/searchLogo.png"
+                        alt="search icon"
+                        className="absolute left-20 top-1/2 transform -translate-y-1/2 w-5 h-auto"
+                    /> */}
+                <input
+                    id="search-bar"
+                    className="ml-2 pl-10 py-1 rounded-md border border-gray-500 w-1/3 placeholder-gray-600
+                    bg-[url('../../public/images/searchLogo.png')] bg-no-repeat bg-1.25 bg-left-0.75"
+                    placeholder="Search"
+                />
+                <div className="w-44"></div>
+                {/* </div> */}
+            </div>
+        </div>
     );
 };
 

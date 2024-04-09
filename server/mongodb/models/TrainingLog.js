@@ -22,7 +22,10 @@ const trainingLogSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    note: String
+    note: String,
+    animalName: String,
+    breed: String,
+    userName: String
 });
 
 export default mongoose.models?.TrainingLog || mongoose.model("TrainingLog", trainingLogSchema);
