@@ -9,7 +9,7 @@ const ProfileCard = () => {
                 <a className="menu-item" id="store-link">
                     <img
                         id="profilepic"
-                        src="images/appLogo.png"
+                        src="images/bogLlogo.png"
                         alt="logo"
                         width="60"
                         height="60"
