@@ -7,18 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [contextId, setUserId] = useState(null);
   const [contextAdmin, setAdmin] = useState(null);
 
-  useEffect(() => {
-    const storedName = localStorage.getItem('userName');
-    const storedId = localStorage.getItem('userId');
-    const storedAdmin = localStorage.getItem('admin');
-
-    if (storedName && storedId && storedAdmin) {
-      setUserName(storedName);
-      setUserId(storedId);
-      setAdmin(storedAdmin);
-    }
-  }, []);
-
   const contextLogin = (name, id, admin) => {
     localStorage.setItem('userName', name);
     localStorage.setItem('userId', id);

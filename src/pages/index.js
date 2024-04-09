@@ -1,34 +1,19 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import TrainingLog from "../components/TrainingLog";
-import ProfileCard from "@/components/ProfileCard";
-import SearchBar from "@/components/SearchBar";
-import AnimalPage from "@/components/AnimalPage";
 import { useContext, useEffect } from "react";
 import AuthContext from "@/components/AuthContext";
 
 export default function Home() {
-  const { contextName } = useContext(AuthContext);
+  const {contextLogin} = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(contextName);
-    if (!contextName) {
-      //window.location.href = "/login";
+    contextLogin("admin", "66089adec3d1112d02a879eb", "true"); //temp auto login
+    if (localStorage.getItem("userName") === null) {
+      window.location.href = "/login";
+    } else {
+      window.location.href= "/animals";
     }
-  }, [contextName]);
+  }, []);
 
   return (
-    contextName !== null ? 
-    <div className="flex flex-col h-fit">
-      <SearchBar />
-      <div className="flex flex-row">
-        <ProfileCard />
-        <div className="flex flex-col w-full">
-          <AnimalPage />
-          <TrainingLog />
-        </div>
-      </div>
-    </div> :
     <></>
   );
 }
