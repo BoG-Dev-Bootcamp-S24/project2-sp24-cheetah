@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileCard = () => {
     return (
-        <div className="h-screen flex flex-col justify-end items-start p-10">
+        <div className="flex flex-col justify-end items-start p-10">
             <hr className="w-18 border-t-2 mb-10" />
             <div className="flex items-center">
                 <a className="menu-item" id="store-link">

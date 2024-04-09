@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Typography, Modal, TextField } from '@mui/material';
 import Image from 'next/image';
+import dogImage from "../../public/images/golden_retriever_image.jpg"
 
 const animals = [
   {
@@ -38,7 +39,7 @@ const animals = [
 const AnimalLog = ({ animal, onEdit }) => (
   <div className="flex flex-col animal-card bg-white rounded-lg shadow-md w-full">
     <div className="flex animal-image w-full justify-center">
-      <Image src={`/../../public/images/${animal.profilePicture}`} alt={animal.name} width={300} height={200} />
+      <Image src={dogImage} alt={animal.name} width={300} height={200}/>
     </div>
     <div className="animal-info flex flex-row p-4 align-middle justify-start">
       <div className="circle mt-2 bg-gray-400 text-white flex align-middle justify-center items-center rounded-full w-10 h-10 text-lg font-semibold">{animal.name[0]}</div>
