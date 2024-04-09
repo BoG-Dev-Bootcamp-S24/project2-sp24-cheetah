@@ -13,9 +13,9 @@ export default function Home() {
       className={`flex min-h-screen flex-col justify-center p-24 bg-white`}
     >
     <div className="flex flex-col items-left">
+      <SearchBar />
       <AnimalPage />
       <ProfileCard />
-      <SearchBar />
       <TrainingLog />
     </div>
     </main>
