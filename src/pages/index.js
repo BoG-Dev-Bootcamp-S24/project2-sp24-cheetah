@@ -4,12 +4,21 @@ import TrainingLog from "../components/TrainingLog";
 import ProfileCard from "@/components/ProfileCard";
 import SearchBar from "@/components/SearchBar";
 import AnimalPage from "@/components/AnimalPage";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useContext, useEffect } from "react";
+import AuthContext from "@/components/AuthContext";
 
 export default function Home() {
-  
+  const { contextName } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log(contextName);
+    if (!contextName) {
+      //window.location.href = "/login";
+    }
+  }, [contextName]);
+
   return (
+    contextName !== null ? 
     <div className="flex flex-col h-fit">
       <SearchBar />
       <div className="flex flex-row">
@@ -19,6 +28,7 @@ export default function Home() {
           <TrainingLog />
         </div>
       </div>
-    </div>
+    </div> :
+    <></>
   );
 }

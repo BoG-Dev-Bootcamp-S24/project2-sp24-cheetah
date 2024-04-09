@@ -1,13 +1,16 @@
 import Image from "next/image"
 import quarterCircle from "../../public/images/quarterCircle.png"
-import { createContext, useState } from "react";
-
-const UserContext = createContext(null);
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "@/components/AuthContext";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [id, setId] = useState(null);
+    const [admin, setAdmin] = useState(false);
+    const [name, setName] = useState("");
     const [failed, setFailed] = useState(false);
+    const { contextLogin, contextName, contextId } = useContext(AuthContext);
 
     async function login() {
         const res = await fetch("api/user/verify", {
@@ -20,12 +23,32 @@ export default function Login() {
                 "password": password
             })
         })
+        let verify = await res.json();
+        setAdmin(verify.admin);
+        setName(verify.fullName);
         if (res.status === 200) {
-            window.location.href = "/";
+            let users = null;
+            try {
+                let usersRes = await fetch("/api/admin/users", {
+                  method: "GET"
+                })
+                users = await usersRes.json();
+            } catch (e) {
+                console.error(e.message);
+                trainingLogs = [];
+            }
+            setId(users.filter((user) => user.email === email)[0]._id);
         } else {
             setFailed(true);
         }
     }
+
+    useEffect(() => {
+        if (id) {
+            contextLogin(name, id, admin);
+            window.location.href = "/";
+        }
+    }, [id])
 
     return (
         <>
