@@ -24,14 +24,14 @@ export default async function updateTraining(data) {
             throw e;
         }
         let prevHours = checkTrainingLog.hours;
-        const animal = await Animal.findById(animalId);
+        const animal = await Animal.findById(checkTrainingLog.animalId);
         await TrainingLog.findByIdAndUpdate(trainingLogId, { note: note,
                                                                 hours: hours } );
-        await updateAnimalHours({ animalId: animalId,
+        await updateAnimalHours({ animalId: checkTrainingLog.animalId,
                                     hours: animal.hoursTrained + hours - prevHours});
         return true;
     } catch (e) {
-        //console.log(e);
+        console.log(e);
         throw e;
     }
 }
