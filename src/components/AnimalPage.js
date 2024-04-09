@@ -97,10 +97,10 @@ const AnimalForm = ({ open, handleClose, animal }) => {
         color: 'blue',
       }}
     >
-      <div style={{ backgroundColor: 'white', padding: 16, borderRadius: 8, height: 550, width: 800 }}>
+      <div style={{ backgroundColor: 'white', padding: 16, borderRadius: 8, height: 450, width: 800 }} className="flex-col">
         <Typography variant="h5" gutterBottom color={'black'}>{animal ? 'Edit Animal' : 'Create Animal'}</Typography>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col py-3">
           <TextField label="Owner" value={owner} onChange={(e) => setOwner(e.target.value)} className="mb-4" />
           <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} className="mb-4" />
           <TextField label="Breed" value={breed} onChange={(e) => setBreed(e.target.value)} className="mb-4" />
