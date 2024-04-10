@@ -27,7 +27,7 @@ const ProfileCard = ({name, isAdmin}) => {
                     <div className="circle bg-gray-400 text-white flex align-middle justify-center items-center rounded-full w-10 h-10 text-lg font-semibold">{name[0].toUpperCase()}</div>
                     <div className="flex flex-col items-start ml-2">
                         <div className="menu-item font-bold mr-4 text-gray-600">{name.length <= 9 ? name : name.substring(0, 8) + "..."}</div>
-                        {isAdmin ? <div className="text-gray-600 text-xs">Admin</div> : <></>}
+                        {isAdmin === "true" ? <div className="text-gray-600 text-xs">Admin</div> : <></>}
                     </div>
                 </div>
                 <div className="self-center cursor-pointer">
@@ -44,6 +44,7 @@ const SideBar = ({name, isAdmin, curr}) => {
     const [allTraining, setAllTraining] = useState(false);
     const [allAnimals, setAllAnimals] = useState(false);
     const [users, setUsers] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
         if (curr === 0) {
@@ -57,6 +58,7 @@ const SideBar = ({name, isAdmin, curr}) => {
         } else if (curr === 4) {
             setUsers(true);
         }
+        setAdmin(isAdmin);
     }, [])
 
     return (
@@ -68,17 +70,17 @@ const SideBar = ({name, isAdmin, curr}) => {
                     <SideButton offImage='images/inactiveAnimalLogo.png' onImage='images/activeAnimalsLogo.png' text='Animals' to='/animals' current={animals}></SideButton>
                 </div>
 
-                {isAdmin && (
+                {admin === "true" ? (
                     <div className="text-black border-t border-gray-400 mt-10 flex flex-col mr-4" >
                         <div className="font-semibold pl-2 mt-3">Admin access</div>
                         <SideButton offImage='images/inactiveAllTrainingLogo.png' onImage='images/activeAllTrainingLogo.png' text='All training' to='/training/all' current={allTraining}></SideButton>
                         <SideButton offImage='images/inactiveAllAnimalsLogo.png' onImage='images/activeAllAnimalsLogo.png' text='All animals' to='/animals/all' current={allAnimals}></SideButton>
                         <SideButton offImage='images/inactiveAllUsersLogo.png' onImage='images/activeAllUsersLogo.png' text='All users' to='/users' current={users}></SideButton>
                     </div>
-                )}
+                ) : <></>}
             </div>
 
-            <ProfileCard name={name} isAdmin={isAdmin}/>
+            <ProfileCard name={name} isAdmin={admin}/>
 
         </div>
     );
