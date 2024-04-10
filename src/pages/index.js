@@ -1,3 +1,20 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
+
+/*import SideBar from './sidebar'; // Assuming your Sidebar component is in './sidebar.js'
+
+const Home = () => {
+  return (
+      <div className='h-screen w-screen'>
+        <SideBar name="abi" isAdmin={true}/>
+      </div>
+    
+  );
+};
+
+export default Home;*/
+
 import Image from "next/image";
 import { Inter } from "next/font/google";
 
