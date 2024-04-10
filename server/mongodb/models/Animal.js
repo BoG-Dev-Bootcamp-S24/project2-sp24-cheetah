@@ -5,10 +5,6 @@ const animalSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         required : true
     },
-    profilePicture : {
-        type : String,
-        required : true
-    },
     name : {
         type : String,
         required : true
@@ -25,7 +21,8 @@ const animalSchema = new mongoose.Schema({
         type : Date,
         required : true
     },
-    note : String
+    note : String,
+    userName : String
 });
 
 export default mongoose.models?.Animal || mongoose.model("Animal", animalSchema);
