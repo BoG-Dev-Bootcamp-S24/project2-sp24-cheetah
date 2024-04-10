@@ -16,7 +16,7 @@ const ProfileCard = ({name, isAdmin}) => {
 
     useEffect(() => {
         if (localStorage.getItem("userName") === null) {
-            // window.location.href = "/";
+            window.location.href = "/";
         }
     }, [loggedOut])
 
