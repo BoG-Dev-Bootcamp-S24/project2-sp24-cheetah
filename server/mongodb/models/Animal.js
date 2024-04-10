@@ -25,7 +25,8 @@ const animalSchema = new mongoose.Schema({
         type : Date,
         required : true
     },
-    note : String
+    note : String,
+    userName : String
 });
 
 export default mongoose.models?.Animal || mongoose.model("Animal", animalSchema);

@@ -7,7 +7,8 @@ export default async function readUsers() {
         let res = await User.find();
         let withoutpw = []
         res.map((user) => {
-            withoutpw.push({ fullName: user.fullName,
+            withoutpw.push({ _id: user._id,
+                                fullName: user.fullName,
                                 email: user.email,
                                 admin: user.admin });
         })
