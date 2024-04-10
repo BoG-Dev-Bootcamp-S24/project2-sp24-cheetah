@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchBar = () => {
+const SearchBar = (setSearch) => {
     return (
         <div className="pl-6 py-3 border-b-2 border-gray-400 shadow">
             <div id="menu" className="flex items-center justify-between">

@@ -1,13 +1,16 @@
 import AnimalPage from "@/components/AnimalPage";
-import ProfileCard from "@/components/ProfileCard";
 import SearchBar from "@/components/SearchBar";
+import SideBar from "@/components/sideBar";
 import { useEffect, useState } from "react";
 
 export default function Animals() {
     const [userName, setUserName] = useState(null);
+    const [admin, setAdmin] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
       setUserName(localStorage.getItem("userName"));
+      setAdmin(localStorage.getItem("admin"));
       if (localStorage.getItem("userName") === null) {
         window.location.href = "/login";
       }
@@ -16,11 +19,11 @@ export default function Animals() {
     return (
         userName !== null ? 
         <div className="flex flex-col h-fit">
-        <SearchBar />
+        <SearchBar setSearch={setSearch}/>
         <div className="flex flex-row">
-            <ProfileCard />
+            <SideBar name={userName} isAdmin={admin} curr={1}/>
             <div className="flex flex-col w-full">
-            <AnimalPage />
+            <AnimalPage adminPage={false} search={search} />
             </div>
         </div>
         </div> :

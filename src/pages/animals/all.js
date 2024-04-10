@@ -1,6 +1,6 @@
 import AnimalPage from "@/components/AnimalPage";
-import ProfileCard from "@/components/ProfileCard";
 import SearchBar from "@/components/SearchBar";
+import SideBar from "@/components/sideBar";
 import { useEffect, useState } from "react";
 
 export default function AllAnimals() {
@@ -27,9 +27,9 @@ export default function AllAnimals() {
         <div className="flex flex-col h-fit">
         <SearchBar />
         <div className="flex flex-row">
-            <ProfileCard />
+            <SideBar name={userName} isAdmin={admin} curr={3}/>
             <div className="flex flex-col w-full">
-            <AnimalPage />
+            <AnimalPage adminPage={true}/>
             </div>
         </div>
         </div> :

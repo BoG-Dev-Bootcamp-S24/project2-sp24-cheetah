@@ -1,6 +1,6 @@
-import ProfileCard from "@/components/ProfileCard";
 import SearchBar from "@/components/SearchBar";
 import TrainingPage from "@/components/TrainingLog";
+import SideBar from "@/components/sideBar";
 import { useEffect, useState } from "react";
 
 export default function AllTraining() {
@@ -27,9 +27,9 @@ export default function AllTraining() {
         <div className="flex flex-col h-fit">
         <SearchBar />
         <div className="flex flex-row">
-            <ProfileCard />
+            <SideBar name={userName} isAdmin={admin} curr={2}/>
             <div className="flex flex-col w-full">
-            <TrainingPage />
+            <TrainingPage adminPage={true}/>
             </div>
         </div>
         </div> :

@@ -41,7 +41,7 @@ const theme = createTheme({
   },
 });
 
-const TrainingLog = ({ log, onEdit }) => {
+const TrainingLog = ({ log, onEdit, adminPage }) => {
   const [year, month, day] = log.date.split('-');
   return (
     <div className="flex justify-between rounded-2xl bg-slate-300 shadow-md mb-2">
@@ -68,23 +68,23 @@ const TrainingLog = ({ log, onEdit }) => {
         </div>
       </div>
       <div className="flex align-middle justify-end">
-        <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full">
+        {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full">
           Edit
-        </Button>
+        </Button> : <></>}
       </div>
     </div>
   );
 };
 
-const TrainingLogList = ({ logs, onEdit }) => (
+const TrainingLogList = ({ logs, onEdit, adminPage }) => (
   <div className="space-y-4 bg-zinc-400">
     {logs.map(log => (
-      <TrainingLog key={log._id} log={log} onEdit={() => onEdit(log._id)} />
+      <TrainingLog key={log._id} log={log} adminPage={adminPage} onEdit={() => onEdit(log._id)} />
     ))}
   </div>
 );
 
-const createLog = async (title, description, hoursLogged, animalId, month, day, year) => {
+const createLog = async (userId, title, description, hoursLogged, animalId, month, day, year) => {
   const date = new Date(year + "-" + month + "-" + day);
   let res = await fetch("/api/training", {
       method: "POST",
@@ -92,7 +92,7 @@ const createLog = async (title, description, hoursLogged, animalId, month, day, 
           "Content-Type": "application/json"
       },
       body: JSON.stringify({
-          "userId": "66089af0c3d1112d02a879ed",
+          "userId": userId,
           "title": title,
           "animalId": animalId,
           "hours": hoursLogged,
@@ -128,7 +128,36 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
   const [day, setDay] = useState('');
   const [year, setYear] = useState('');
   const [error, setError] = useState('');
-  const [log, setLog] = useState(null);
+  const [animalsOptions, setAnimalsOptions] = useState(null);
+  const [animalsLoading, setAnimalsLoading] = useState(false);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
+
+  async function getAnimals() {
+    setAnimalsLoading(true);
+    try {
+      let res = await fetch("/api/admin/animals", {
+        method: "GET"
+      })
+      let temp = await res.json(); //map to an html element and put into drop down
+      const options = temp.map ((animal) => (
+        <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
+      ))
+      setAnimalId(temp[0]._id);
+      setAnimalsOptions(options);
+    } catch (e) {
+      console.error(e.message);
+      setAnimalsOptions(null)
+    }
+    setAnimalsLoading(false);
+  }
+
+  useEffect(() => {
+    getAnimals();
+  }, [])
 
   useEffect(() => {
     if (editingLogId !== null) {
@@ -142,7 +171,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
 
     if (editingLogId === null) {
       if (title && description && hoursLogged && animalId && month && day && year) {
-        let res = await createLog(title, description, hoursLogged, animalId, month, day, year);
+        let res = await createLog(userId, title, description, hoursLogged, animalId, month, day, year);
         if (res.status === 200) {
           setTitle("");
           setDescription("");
@@ -200,7 +229,13 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
             {error && <p className="text-red-500 mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="flex flex-col">
               {editingLogId !== null ? <></> : <TextField label="Title" value={title} onChange={(e) => setTitle(e.target.value)} style={{marginBottom:"1rem"}} />}
-              {editingLogId !== null ? <></> : <TextField label="Animal ID" value={animalId} onChange={(e) => setAnimalId(e.target.value)} style={{marginBottom:"1rem"}} />}
+              {editingLogId !== null ? <></> : 
+                <select style={{borderColor:"rgba(0, 0, 0, 0.23)", color:"rgba(0, 0, 0, 0.6)",
+                fontFamily:"\"Roboto\",\"Helvetica\",\"Arial\",sans-serif", fontWeight:400, height:"3.5em"}}
+                label="Month" className="appearance-none mr-1 mb-4 bg-[#808080] border-[1px] rounded-[4px]
+                text-current px-[14px] py-[14px]" value={animalId} onChange={(e) => setAnimalId(e.target.value)}>
+                  {animalsLoading ? <option value={null}>Loading</option> : animalsOptions}
+                </select>}
               <TextField type="number" label="Hours Logged" value={hoursLogged} onChange={(e) => setHoursLogged(e.target.value)} style={{marginBottom:"1rem"}} />
               {editingLogId !== null ? <></> : <div className="flex flex-row mb-4">
                 <select style={{borderColor:"rgba(0, 0, 0, 0.23)", color:"rgba(0, 0, 0, 0.6)",
@@ -234,10 +269,15 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
 };
 
 
-const TrainingPage = () => {
+const TrainingPage = (adminPage) => {
   const [open, setOpen] = useState(false);
   const [editingLogId, setEditingLogId] = useState(null);
   const [trainingLoading, setTrainingLoading] = useState(false);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
 
   async function getTraining() {
     setTrainingLoading(true);
@@ -246,6 +286,9 @@ const TrainingPage = () => {
         method: "GET"
       })
       trainingLogs = await res.json();
+      if (!adminPage.adminPage) {
+        trainingLogs = trainingLogs.filter((log) => log.userId === userId);
+      }
     } catch (e) {
       console.error(e.message);
       trainingLogs = [];
@@ -264,20 +307,22 @@ const TrainingPage = () => {
   };
 
   useEffect(() => {
-    getTraining();
-  }, [open])
+    if (userId !== "") {
+      getTraining();
+    }
+  }, [open, userId])
 
   return (
     <div className="flex-col container mx-auto p-4 bg-zinc-400">
         <div className="flex justify-between bg-zinc-400 mb-4">
             <Typography variant="h1 text-black" gutterBottom>Training Logs</Typography>
-            <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right">
+            {!adminPage.adminPage ? <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right">
                 Add Training Log
-            </Button>
+            </Button> : <></>}
         </div>
         <div className="flex-col bg-zinc-400">
-            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId}/>
-            {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} />}
+            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId} />
+            {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} adminPage={adminPage.adminPage} />}
         </div>
     </div>
   );

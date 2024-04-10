@@ -4,7 +4,6 @@ import updateAnimalHours from "../../../server/mongodb/actions/update/updateAnim
 export default async function handler(req, res) {
     if (req.method == 'POST') {
         try {
-            console.log(req.body);
             await createAnimal(req.body);
             return res.status(200).send("Success");
         } catch (e) {

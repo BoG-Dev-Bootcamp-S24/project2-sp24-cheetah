@@ -5,10 +5,6 @@ const animalSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         required : true
     },
-    profilePicture : {
-        type : String,
-        required : true
-    },
     name : {
         type : String,
         required : true

@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import AuthContext from "@/components/AuthContext";
+import SideBar from "@/components/sideBar";
 
 
 export default function Home() {

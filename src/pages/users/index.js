@@ -1,3 +1,6 @@
+import SearchBar from "@/components/SearchBar";
+import SideBar from "@/components/sideBar";
+import ProfileCard from "@/components/ProfileCard";
 import { useEffect, useState } from "react";
 
 export default function Users() {
@@ -18,4 +21,18 @@ export default function Users() {
             window.location.href = "/animals";
         }
       }, []);
+
+    return (
+      userName !== null && admin === "true" ? 
+      <div className="flex flex-col h-fit">
+      <SearchBar />
+      <div className="flex flex-row">
+        <SideBar name={userName} isAdmin={admin} curr={4}/>
+          <div className="flex flex-col w-full">
+          <ProfileCard />
+          </div>
+      </div>
+      </div> :
+      <></>
+    )
 }
