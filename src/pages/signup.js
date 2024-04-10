@@ -1,6 +1,6 @@
 import Image from "next/image"
 import quarterCircle from "../../public/images/quarterCircle.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SignUp() {
     const [name, setName] = useState("");
@@ -10,6 +10,14 @@ export default function SignUp() {
     const [diffPass, setDiffPass] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [error, setError] = useState(false);
+    const [userName, setUserName] = useState(null);
+
+    useEffect(() => {
+        setUserName(localStorage.getItem("userName"));
+        if (localStorage.getItem("userName") !== null) {
+          window.location.href = "/";
+        }
+      }, []);
 
     async function createAccount() {
         if (password !== confirmPassword) {
@@ -36,8 +44,9 @@ export default function SignUp() {
     }
 
     return (
+        userName ?
         <>
-            <div className="border-b-8">top bar</div>
+            <TopBar/>
             <div className="flex flex-col items-center">
                 <div className="text-5xl font-bold mt-20">Create Account</div>
                 <input type="text" placeholder="Full Name" className="border-b-2 border-red-600 w-1/3 mt-8 text-xl"
@@ -73,6 +82,7 @@ export default function SignUp() {
                 <div>Made by Team Cheetah</div>
                 <div>2023 BOG Developer Bootcamp</div>
             </div>
-        </>
+        </> :
+        <></>
     )
 }6

@@ -2,6 +2,7 @@ import Image from "next/image"
 import quarterCircle from "../../public/images/quarterCircle.png"
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "@/components/AuthContext";
+import TopBar from "@/components/TopBar";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -10,7 +11,15 @@ export default function Login() {
     const [admin, setAdmin] = useState(false);
     const [name, setName] = useState("");
     const [failed, setFailed] = useState(false);
-    const { contextLogin, contextName, contextId } = useContext(AuthContext);
+    const { contextLogin } = useContext(AuthContext);
+    const [userName, setUserName] = useState(null);
+
+    useEffect(() => {
+        setUserName(localStorage.getItem("userName"));
+        if (localStorage.getItem("userName") !== null) {
+          window.location.href = "/";
+        }
+      }, []);
 
     async function login() {
         const res = await fetch("api/user/verify", {
@@ -51,8 +60,9 @@ export default function Login() {
     }, [id])
 
     return (
+        !userName ?
         <>
-            <div className="border-b-8">top bar</div>
+            <TopBar/>
             <div className="flex flex-col items-center">
                 <div className="text-5xl font-bold mt-40">Login</div>
                 <input type="text" placeholder="Email" className="border-b-2 border-red-600 w-1/3 mt-8 text-xl"
@@ -69,6 +79,7 @@ export default function Login() {
                 <div>Made by Team Cheetah</div>
                 <div>2023 BOG Developer Bootcamp</div>
             </div>
-        </>
+        </> :
+        <></>
     )
 }6

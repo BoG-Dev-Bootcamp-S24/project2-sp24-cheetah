@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchBar = () => {
+const TopBar = () => {
     return (
         <div className="pl-6 py-3 border-b-2 border-gray-400 shadow">
             <div id="menu" className="flex items-center justify-between">
@@ -23,12 +23,6 @@ const SearchBar = () => {
                         alt="search icon"
                         className="absolute left-20 top-1/2 transform -translate-y-1/2 w-5 h-auto"
                     /> */}
-                <input
-                    id="search-bar"
-                    className="ml-2 pl-10 py-1 rounded-md border border-gray-500 w-1/3 placeholder-gray-600
-                    bg-[url('../../public/images/searchLogo.png')] bg-no-repeat bg-1.25 bg-left-0.75"
-                    placeholder="Search"
-                />
                 <div className="w-44"></div>
                 {/* </div> */}
             </div>
@@ -36,4 +30,4 @@ const SearchBar = () => {
     );
 };
 
-export default SearchBar;
+export default TopBar;
