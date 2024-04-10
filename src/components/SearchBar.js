@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchBar = (setSearch) => {
+const SearchBar = ({setSearch}) => {
     return (
         <div className="pl-6 py-3 border-b-2 border-gray-400 shadow">
             <div id="menu" className="flex items-center justify-between">
@@ -27,7 +27,7 @@ const SearchBar = (setSearch) => {
                     id="search-bar"
                     className="ml-2 pl-10 py-1 rounded-md border border-gray-500 w-1/3 placeholder-gray-600
                     bg-[url('../../public/images/searchLogo.png')] bg-no-repeat bg-1.25 bg-left-0.75"
-                    placeholder="Search"
+                    placeholder="Search" onChange={e => setSearch(e.target.value)}
                 />
                 <div className="w-44"></div>
                 {/* </div> */}

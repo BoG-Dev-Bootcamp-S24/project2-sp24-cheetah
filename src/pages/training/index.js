@@ -7,6 +7,7 @@ import SideBar from "@/components/sideBar";
 export default function Training() {
     const [userName, setUserName] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
       setUserName(localStorage.getItem("userName"));
@@ -19,11 +20,11 @@ export default function Training() {
     return (
         userName !== null ? 
         <div className="flex flex-col h-screen">
-        <SearchBar />
+        <SearchBar setSearch={setSearch}/>
         <div className="flex flex-row">
           <SideBar name={userName} isAdmin={admin} curr={0}/>
             <div className="flex flex-col w-full">
-            <TrainingPage adminPage={false} />
+            <TrainingPage adminPage={false} search={search} />
             </div>
         </div>
         </div> :

@@ -30,7 +30,7 @@ const UsersList = () => {
     )
 }
 
-const UsersPage = () => {
+const UsersPage = (props) => {
     const [usersLoading, setUsersLoading] = useState(false);
 
     async function getUsers() {
@@ -40,6 +40,9 @@ const UsersPage = () => {
             method: "GET"
           })
           users = await res.json();
+          if (props.search !== "") {
+            users = users.filter((user) => user.fullName.toLowerCase().includes(props.search.toLowerCase()));
+          }
         } catch (e) {
           console.error(e.message);
           users = [];
@@ -49,7 +52,7 @@ const UsersPage = () => {
 
     useEffect(() => {
         getUsers();
-    }, [])
+    }, [props.search])
 
     return (
         <div>

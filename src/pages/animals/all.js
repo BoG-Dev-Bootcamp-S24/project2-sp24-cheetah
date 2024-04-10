@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function AllAnimals() {
     const [userName, setUserName] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
       setUserName(localStorage.getItem("userName"));
@@ -25,11 +26,11 @@ export default function AllAnimals() {
       return (
         userName !== null && admin === "true" ? 
         <div className="flex flex-col h-fit">
-        <SearchBar />
+        <SearchBar setSearch={setSearch}/>
         <div className="flex flex-row">
             <SideBar name={userName} isAdmin={admin} curr={3}/>
             <div className="flex flex-col w-full">
-            <AnimalPage adminPage={true}/>
+            <AnimalPage adminPage={false} search={search} />
             </div>
         </div>
         </div> :

@@ -1,11 +1,12 @@
 import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/sideBar";
-import ProfileCard from "@/components/ProfileCard";
 import { useEffect, useState } from "react";
+import UsersPage from "@/components/ProfileCard";
 
 export default function Users() {
     const [userName, setUserName] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
       setUserName(localStorage.getItem("userName"));
@@ -25,11 +26,11 @@ export default function Users() {
     return (
       userName !== null && admin === "true" ? 
       <div className="flex flex-col h-fit">
-      <SearchBar />
+      <SearchBar setSearch={setSearch}/>
       <div className="flex flex-row">
         <SideBar name={userName} isAdmin={admin} curr={4}/>
           <div className="flex flex-col w-full">
-          <ProfileCard />
+          <UsersPage search={search} />
           </div>
       </div>
       </div> :

@@ -220,7 +220,7 @@ const AnimalForm = ({ open, handleClose, animal }) => {
   );
 };
 
-const AnimalPage = (adminPage, search) => {
+const AnimalPage = (props) => {
   const [open, setOpen] = useState(false);
   const [editingAnimal, setEditingAnimal] = useState(null);
   const [animalsLoading, setAnimalsLoading] = useState(false);
@@ -237,12 +237,12 @@ const AnimalPage = (adminPage, search) => {
         method: "GET"
       })
       animals = await res.json();
-      if (!adminPage.adminPage) {
+      if (!props.adminPage) {
         animals = animals.filter((anml) => anml.ownerId === ownerId);
       }
-      // if (search !== "") {
-      //   animals = animals.filter((anml) => anml.name === search);
-      // }
+      if (props.search !== "") {
+        animals = animals.filter((anml) => anml.name.toLowerCase().includes(props.search.toLowerCase()));
+      }
     } catch (e) {
       console.error(e.message);
       animals = [];
@@ -267,8 +267,8 @@ const AnimalPage = (adminPage, search) => {
     if (ownerId !== "") {
       getAnimals();
     }
-    console.log(search);
-  }, [open, ownerId, search])
+    console.log(props.search);
+  }, [open, ownerId, props.search])
 
   return (
     <div className="animal-page p-4">

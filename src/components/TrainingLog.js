@@ -269,7 +269,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
 };
 
 
-const TrainingPage = (adminPage) => {
+const TrainingPage = (props) => {
   const [open, setOpen] = useState(false);
   const [editingLogId, setEditingLogId] = useState(null);
   const [trainingLoading, setTrainingLoading] = useState(false);
@@ -286,8 +286,11 @@ const TrainingPage = (adminPage) => {
         method: "GET"
       })
       trainingLogs = await res.json();
-      if (!adminPage.adminPage) {
+      if (!props.adminPage) {
         trainingLogs = trainingLogs.filter((log) => log.userId === userId);
+      }
+      if (props.search !== "") {
+        trainingLogs = trainingLogs.filter((log) => log.title.toLowerCase().includes(props.search.toLowerCase()));
       }
     } catch (e) {
       console.error(e.message);
@@ -310,19 +313,19 @@ const TrainingPage = (adminPage) => {
     if (userId !== "") {
       getTraining();
     }
-  }, [open, userId])
+  }, [open, userId, props.search])
 
   return (
     <div className="flex-col container mx-auto p-4 bg-zinc-400">
         <div className="flex justify-between bg-zinc-400 mb-4">
             <Typography variant="h1 text-black" gutterBottom>Training Logs</Typography>
-            {!adminPage.adminPage ? <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right">
+            {!props.adminPage ? <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right">
                 Add Training Log
             </Button> : <></>}
         </div>
         <div className="flex-col bg-zinc-400">
             <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId} />
-            {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} adminPage={adminPage.adminPage} />}
+            {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} adminPage={props.adminPage} />}
         </div>
     </div>
   );
