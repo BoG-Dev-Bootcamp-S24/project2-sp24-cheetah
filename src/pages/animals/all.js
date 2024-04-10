@@ -26,11 +26,11 @@ export default function AllAnimals() {
       return (
         userName !== null && admin === "true" ? 
         <div className="flex flex-col h-fit">
-        <SearchBar setSearch={setSearch}/>
+        <SearchBar setSearch={setSearch} all={true}/>
         <div className="flex flex-row">
-            <SideBar name={userName} isAdmin={admin} curr={3}/>
+            <SideBar name={userName} isAdmin={admin} curr={3} all={true}/>
             <div className="flex flex-col w-full">
-            <AnimalPage adminPage={false} search={search} />
+            <AnimalPage adminPage={true} search={search} />
             </div>
         </div>
         </div> :

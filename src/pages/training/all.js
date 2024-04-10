@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function AllTraining() {
     const [userName, setUserName] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
       setUserName(localStorage.getItem("userName"));
@@ -25,11 +26,11 @@ export default function AllTraining() {
       return (
         userName !== null && admin === "true" ? 
         <div className="flex flex-col h-fit">
-        <SearchBar />
+        <SearchBar setSearch={setSearch} all={true}/>
         <div className="flex flex-row">
-            <SideBar name={userName} isAdmin={admin} curr={2}/>
+            <SideBar name={userName} isAdmin={admin} curr={2} all={true}/>
             <div className="flex flex-col w-full">
-            <TrainingPage adminPage={true}/>
+            <TrainingPage adminPage={true} search={search}/>
             </div>
         </div>
         </div> :

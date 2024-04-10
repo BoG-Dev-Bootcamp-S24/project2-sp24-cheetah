@@ -38,7 +38,7 @@ const ProfileCard = ({name, isAdmin}) => {
     );
 };
 
-const SideBar = ({name, isAdmin, curr}) => {
+const SideBar = ({name, isAdmin, curr, all}) => {
     const [training, setTraining] = useState(false);
     const [animals, setAnimals] = useState(false);
     const [allTraining, setAllTraining] = useState(false);
@@ -63,9 +63,23 @@ const SideBar = ({name, isAdmin, curr}) => {
 
     return (
         <div className="w-56 bg-white flex flex-col justify-between pt-4 border-r h-screen">
+            {all ?
             <div className="ml-4">
                 <div className="h-1/6 flex flex-col">
-                    {/*change to="" to reflect links to respective pages. currently, these 2 sidebuttons have test values*/}
+                    <SideButton offImage='../images/inactiveTrainingLogs.png' onImage='../images/activeTrainingLogo.png' text='Training logs' to='/training' current={training}></SideButton>
+                    <SideButton offImage='../images/inactiveAnimalLogo.png' onImage='../images/activeAnimalsLogo.png' text='Animals' to='/animals' current={animals}></SideButton>
+                </div>
+
+                {admin === "true" ? (
+                    <div className="text-black border-t border-gray-400 mt-10 flex flex-col mr-4" >
+                        <div className="font-semibold pl-2 mt-3">Admin access</div>
+                        <SideButton offImage='../images/inactiveAllTrainingLogo.png' onImage='../images/activeAllTrainingLogo.png' text='All training' to='/training/all' current={allTraining}></SideButton>
+                        <SideButton offImage='../images/inactiveAllAnimalsLogo.png' onImage='../images/activeAllAnimalsLogo.png' text='All animals' to='/animals/all' current={allAnimals}></SideButton>
+                        <SideButton offImage='../images/inactiveAllUsersLogo.png' onImage='../images/activeAllUsersLogo.png' text='All users' to='/users' current={users}></SideButton>
+                    </div>
+                ) : <></>}
+            </div> : <div className="ml-4">
+                <div className="h-1/6 flex flex-col">
                     <SideButton offImage='images/inactiveTrainingLogs.png' onImage='images/activeTrainingLogo.png' text='Training logs' to='/training' current={training}></SideButton>
                     <SideButton offImage='images/inactiveAnimalLogo.png' onImage='images/activeAnimalsLogo.png' text='Animals' to='/animals' current={animals}></SideButton>
                 </div>
@@ -79,6 +93,7 @@ const SideBar = ({name, isAdmin, curr}) => {
                     </div>
                 ) : <></>}
             </div>
+            }
 
             <ProfileCard name={name} isAdmin={admin}/>
 
