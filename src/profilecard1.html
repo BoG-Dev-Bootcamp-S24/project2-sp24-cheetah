@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" style="margin: 0px 0; height: 100%;">
+
+<head>
+    <title>Profile Cards</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .text-grey {
+            color: #a9a0a0; 
+        }
+
+        .profile-pic {
+            margin-right: 10px; 
+        }
+
+        .line {
+            width: 18%; 
+            border-top: 1px solid #000; 
+            margin-bottom: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <!-- Profile Card -->
+        <!-- Repeat the profile card div 15 times -->
+        <!-- Each div represents one profile card -->
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <div class="profile-card">
+            <hr class="line">
+            <div class="flex items-center">
+                <a class="menu-item">
+                    <img class="profile-pic" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/appLogo.png" alt="logo" width="60" height="60" />
+                </a>
+                <div class="flex flex-col items-start">
+                    <a class="menu-item text-2xl font-bold mr-4 text-grey">Long Lam</a>
+                    <a class="text-grey">Admin</a>
+                </div>
+                <img class="logout-logo" src="/Users/nithyaab/Documents/GitHub/project2-sp24-cheetah/public/images/logoutLogo.png" alt="logout logo">
+            </div>
+        </div>
+        <!-- Repeat the profile card div 14 more times -->
+        <!-- For brevity, I'm omitting the repetitive code -->
+        <!-- You should copy the entire profile-card div and paste it 14 times -->
+        <!-- Each div represents one profile card -->
+    </div>
+</body>
+
+</html>
