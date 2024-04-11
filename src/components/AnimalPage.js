@@ -116,13 +116,15 @@ const AnimalForm = ({ open, handleClose, animal }) => {
 
   useEffect(() => {
     if (animal !== null) {
+      console.log(animals.filter((anml) => anml._id === animal._id)[0]);
       try {
         setHoursTrained(animals.filter((anml) => anml._id === animal._id)[0].hoursTrained);
       } catch (e) {
         setHoursTrained("");
       }
+    } else {
+      setHoursTrained("");
     }
-    setHoursTrained("");
   }, [animal])
 
   const handleSubmit = async (event) => {
