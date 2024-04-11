@@ -129,7 +129,6 @@ const deleteLog = async (trainingLogId) => {
           "trainingLogId": trainingLogId
       })
   })
-  console.log(res);
   return res;
 }
 
@@ -145,6 +144,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
   const [animalsOptions, setAnimalsOptions] = useState(null);
   const [animalsLoading, setAnimalsLoading] = useState(false);
   const [userId, setUserId] = useState("");
+  const [userAnimals, setUserAnimals] = useState(null);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -157,10 +157,11 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
         method: "GET"
       })
       let temp = await res.json(); //map to an html element and put into drop down
-      const options = temp.filter((animal) => animal.ownerId === userId)
-        .map ((animal) => (
+      temp = temp.filter((animal) => animal.ownerId === userId);
+      const options = temp.map ((animal) => (
         <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
       ))
+      setUserAnimals(temp);
       setAnimalId(temp[0]._id);
       setAnimalsOptions(options);
     } catch (e) {
@@ -188,13 +189,20 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
     event.preventDefault();
 
     if (editingLogId === null) {
+      console.log(title);
+      console.log(description);
+      console.log(hoursLogged);
+      console.log(animalId);
+      console.log(month);
+      console.log(day);
+      console.log(year);
       if (title && description && hoursLogged && animalId && month && day && year) {
         let res = await createLog(userId, title, description, hoursLogged, animalId, month, day, year);
         if (res.status === 200) {
           setTitle("");
           setDescription("");
           setHoursLogged("");
-          setAnimalId("");
+          setAnimalId(userAnimals[0]);
           setMonth(1);
           setDay("");
           setYear("");
@@ -213,7 +221,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
           setTitle("");
           setDescription("");
           setHoursLogged("");
-          setAnimalId("");
+          setAnimalId(userAnimals[0]);
           setMonth(1);
           setDay("");
           setYear("");
@@ -341,7 +349,7 @@ const TrainingPage = (props) => {
   }, [open, userId, props.search])
 
   return (
-    <div className="flex-col container mx-auto p-4 bg-zinc-400">
+    <div className="flex-col container mx-auto p-4 bg-zinc-400 h-full">
         <div className="flex justify-between bg-zinc-400 mb-4">
             <Typography variant="h1 text-black" gutterBottom>Training Logs</Typography>
             {!props.adminPage ? <Button onClick={() => setOpen(true)} variant="contained" color="primary" className="float-right">
