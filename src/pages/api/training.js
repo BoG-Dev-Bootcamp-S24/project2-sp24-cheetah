@@ -1,4 +1,5 @@
 import createTraining from "../../../server/mongodb/actions/create/createTraining";
+import deleteTraining from "../../../server/mongodb/actions/delete/deleteTraining";
 import updateTraining from "../../../server/mongodb/actions/update/updateTraining";
 
 export default async function handler(req, res) {

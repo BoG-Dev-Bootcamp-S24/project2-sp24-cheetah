@@ -51,9 +51,6 @@ const AnimalLog = ({ animal, onEdit }) => (
         </div>
       </div>
     </div>
-    <Button onClick={() => deleteAnimal(animal._id)} variant="contained" className="bg-red-500 hover:bg-red-700 mb-4 mx-4">
-        Delete
-    </Button>
     <Button onClick={() => onEdit(animal)} variant="contained" className="bg-blue-500 hover:bg-blue-700 mb-4 mx-4">
       Edit
     </Button>
@@ -111,7 +108,6 @@ const editAnimal = async (animalId, hoursTrained) => {
           "hours": hoursTrained
       })
   })
-  console.log(res);
   return res;
 }
 
@@ -132,7 +128,6 @@ const AnimalForm = ({ open, handleClose, animal }) => {
 
   useEffect(() => {
     if (animal !== null) {
-      console.log(animals.filter((anml) => anml._id === animal._id)[0]);
       try {
         setHoursTrained(animals.filter((anml) => anml._id === animal._id)[0].hoursTrained);
       } catch (e) {
@@ -229,9 +224,16 @@ const AnimalForm = ({ open, handleClose, animal }) => {
                 <TextField type="number" label="Year" value={year} onChange={(e) => setYear(e.target.value)} />
               </div> : <></>}
           {!animal ? <TextField label="Note" value={note} onChange={(e) => setNote(e.target.value)} multiline style={{marginBottom:"1rem"}} /> : <></>}
-          <Button type="submit" variant="contained" className="bg-blue-500 hover:bg-blue-700 mt-4">
+          <div className="flex w-full justify-center">
+          <Button type="submit" variant="contained" className="bg-blue-500 hover:bg-blue-700 mt-4 w-full">
             {animal ? 'Update' : 'Submit'}
           </Button>
+          {animal ? 
+          <Button onClick={() => {deleteAnimal(animal._id); handleClose()}} variant="contained" className="bg-red-500 hover:bg-red-700 mb-4 mx-4 w-full">
+              Delete
+          </Button> :
+          <></>}
+          </div>
         </form>
       </div>
     </Modal>
@@ -285,7 +287,6 @@ const AnimalPage = (props) => {
     if (ownerId !== "") {
       getAnimals();
     }
-    console.log(props.search);
   }, [open, ownerId, props.search])
 
   return (

@@ -3,9 +3,9 @@ import Animal from "../../models/Animal";
 
 export default async function deleteAnimal(data) {
     try {
+        console.log(data);
         await connectDB();
-        console.log(findById(data?.ownerId));
-        await Animal.findByIdAndDelete(data?.ownerId);
+        await Animal.findByIdAndDelete(data?.animalId);
         return true;
     } catch (e) {
         console.log(e);

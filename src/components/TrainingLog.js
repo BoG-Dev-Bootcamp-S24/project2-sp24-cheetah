@@ -71,9 +71,6 @@ const TrainingLog = ({ log, onEdit, adminPage }) => {
         {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full ">
           Edit
         </Button> : <></>}
-        {!adminPage ? <Button onClick={() => deleteLog(log._id)} variant="contained" className="bg-red-500 hover:bg-red-700 flex m-8 rounded-full">
-          Delete
-        </Button> : <></>}
       </div>
     </div>
   );
@@ -278,9 +275,16 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
                 <TextField type="number" label="Year" value={year} onChange={(e) => setYear(e.target.value)} />
               </div>}
               <TextField label="Description" style={{marginBottom:"1rem"}} value={description} onChange={(e) => setDescription(e.target.value)} multiline />
-              <Button type="submit" variant="contained" color="primary" className="mt-4">
+              <div className="flex">
+              <Button type="submit" variant="contained" color="primary" className="mt-4 w-full">
                 Submit
               </Button>
+              {editingLogId ?
+              <Button onClick={() => {deleteLog(editingLogId); handleClose();}} variant="contained" className="bg-red-500 hover:bg-red-700 flex m-8 rounded-full w-full">
+                Delete
+              </Button> : <></>
+              }
+              </div>
             </form>
       </div>
     </Modal>
@@ -343,7 +347,7 @@ const TrainingPage = (props) => {
             </Button> : <></>}
         </div>
         <div className="flex-col bg-zinc-400">
-            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId} />
+            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId}/>
             {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} adminPage={props.adminPage} />}
         </div>
     </div>
