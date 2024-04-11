@@ -51,6 +51,9 @@ const AnimalLog = ({ animal, onEdit }) => (
         </div>
       </div>
     </div>
+    <Button onClick={() => deleteAnimal(animal._id)} variant="contained" className="bg-red-500 hover:bg-red-700 mb-4 mx-4">
+        Delete
+    </Button>
     <Button onClick={() => onEdit(animal)} variant="contained" className="bg-blue-500 hover:bg-blue-700 mb-4 mx-4">
       Edit
     </Button>
@@ -82,6 +85,19 @@ const createAnimal = async (ownerId, name, breed, hoursTrained, month, day, year
       })
   })
   return res;
+}
+
+const deleteAnimal = async (animalId) => { 
+    let res = await fetch("/api/animal", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "animalId": animalId
+        })
+    })
+    return res;
 }
 
 const editAnimal = async (animalId, hoursTrained) => {

@@ -68,8 +68,11 @@ const TrainingLog = ({ log, onEdit, adminPage }) => {
         </div>
       </div>
       <div className="flex align-middle justify-end">
-        {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full">
+        {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full ">
           Edit
+        </Button> : <></>}
+        {!adminPage ? <Button onClick={() => deleteLog(log._id)} variant="contained" className="bg-red-500 hover:bg-red-700 flex m-8 rounded-full">
+          Delete
         </Button> : <></>}
       </div>
     </div>
@@ -113,6 +116,20 @@ const editLog = async (trainingLogId, description, hoursLogged) => {
           "trainingLogId": trainingLogId,
           "hours": hoursLogged,
           "note": description
+      })
+  })
+  console.log(res);
+  return res;
+}
+
+const deleteLog = async (trainingLogId) => {
+  let res = await fetch("/api/training", {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          "trainingLogId": trainingLogId
       })
   })
   console.log(res);
