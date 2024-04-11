@@ -147,7 +147,6 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
         .map ((animal) => (
         <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
       ))
-      console.log(temp);
       setAnimalId(temp[0]._id);
       setAnimalsOptions(options);
     } catch (e) {
@@ -159,7 +158,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
 
   useEffect(() => {
     getAnimals();
-  }, [])
+  }, [userId])
 
   useEffect(() => {
     if (editingLogId !== null) {
