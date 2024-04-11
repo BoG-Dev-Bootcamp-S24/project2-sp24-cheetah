@@ -30,7 +30,7 @@ export default async function verifyUser(data) {
         return { fullName: user[0].fullName, 
                     admin: user[0].admin };
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         throw e;
     }
 }

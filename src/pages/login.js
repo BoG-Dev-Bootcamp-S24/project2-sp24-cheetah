@@ -32,20 +32,16 @@ export default function Login() {
                 "password": password
             })
         })
-        let verify = await res.json();
-        setAdmin(verify.admin);
-        setName(verify.fullName);
+        console.log(res.status);
         if (res.status === 200) {
+            let verify = await res.json();
+            setAdmin(verify.admin);
+            setName(verify.fullName);
             let users = null;
-            try {
-                let usersRes = await fetch("/api/admin/users", {
-                  method: "GET"
-                })
-                users = await usersRes.json();
-            } catch (e) {
-                console.error(e.message);
-                trainingLogs = [];
-            }
+            let usersRes = await fetch("/api/admin/users", {
+                method: "GET"
+            })
+            users = await usersRes.json();
             setId(users.filter((user) => user.email === email)[0]._id);
         } else {
             setFailed(true);
