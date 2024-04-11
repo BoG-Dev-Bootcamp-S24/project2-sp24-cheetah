@@ -178,6 +178,9 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
     if (editingLogId !== null) {
       setHoursLogged(trainingLogs.filter((log) => log._id === editingLogId)[0].hours);
       setDescription(trainingLogs.filter((log) => log._id === editingLogId)[0].note);
+    } else {
+      setHoursLogged("");
+      setDescription("");
     }
  }, [editingLogId])
 
