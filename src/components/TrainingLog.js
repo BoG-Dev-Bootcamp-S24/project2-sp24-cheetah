@@ -115,7 +115,6 @@ const editLog = async (trainingLogId, description, hoursLogged) => {
           "note": description
       })
   })
-  console.log(res);
   return res;
 }
 
@@ -189,13 +188,6 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
     event.preventDefault();
 
     if (editingLogId === null) {
-      console.log(title);
-      console.log(description);
-      console.log(hoursLogged);
-      console.log(animalId);
-      console.log(month);
-      console.log(day);
-      console.log(year);
       if (title && description && hoursLogged && animalId && month && day && year) {
         let res = await createLog(userId, title, description, hoursLogged, animalId, month, day, year);
         if (res.status === 200) {

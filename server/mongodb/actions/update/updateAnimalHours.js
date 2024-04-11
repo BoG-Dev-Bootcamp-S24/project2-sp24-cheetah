@@ -20,7 +20,7 @@ export default async function updateAnimalHours(data) {
         await Animal.findByIdAndUpdate(animalId, { hoursTrained: hours });
         return true;
     } catch (e) {
-        //console.log(e);
+        console.log(e);
         throw e;
     }
 }

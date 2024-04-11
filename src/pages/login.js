@@ -32,7 +32,6 @@ export default function Login() {
                 "password": password
             })
         })
-        console.log(res.status);
         if (res.status === 200) {
             let verify = await res.json();
             setAdmin(verify.admin);

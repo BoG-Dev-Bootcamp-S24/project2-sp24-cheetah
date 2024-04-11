@@ -18,7 +18,6 @@ export default function AllAnimals() {
     useEffect(() => {
         setAdmin(localStorage.getItem("admin"));
         if (localStorage.getItem("admin") === "false") {
-            console.log(localStorage.getItem("admin"));
             window.location.href = "/animals";
         }
       }, []);
