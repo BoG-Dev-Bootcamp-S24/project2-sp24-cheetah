@@ -28,7 +28,7 @@ export default async function updateTraining(data) {
         await TrainingLog.findByIdAndUpdate(trainingLogId, { note: note,
                                                                 hours: hours } );
         await updateAnimalHours({ animalId: checkTrainingLog.animalId,
-                                    hours: animal.hoursTrained + hours - prevHours});
+                                    hours: animal.hoursTrained + parseInt(hours) - prevHours});
         return true;
     } catch (e) {
         console.log(e);
