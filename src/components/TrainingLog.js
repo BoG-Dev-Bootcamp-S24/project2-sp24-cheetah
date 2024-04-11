@@ -143,6 +143,7 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
         method: "GET"
       })
       let temp = await res.json(); //map to an html element and put into drop down
+      console.log(temp);
       const options = temp.filter((animal) => animal.ownerId === userId)
         .map ((animal) => (
         <option key={animal._id} value={animal._id}>{animal.name} - {animal.breed}</option>
