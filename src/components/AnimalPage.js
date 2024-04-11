@@ -84,6 +84,19 @@ const createAnimal = async (ownerId, name, breed, hoursTrained, month, day, year
   return res;
 }
 
+const deleteAnimal = async (animalId) => { 
+    let res = await fetch("/api/animal", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "animalId": animalId
+        })
+    })
+    return res;
+}
+
 const editAnimal = async (animalId, hoursTrained) => {
   let res = await fetch("/api/animal", {
       method: "PATCH",
@@ -95,7 +108,6 @@ const editAnimal = async (animalId, hoursTrained) => {
           "hours": hoursTrained
       })
   })
-  console.log(res);
   return res;
 }
 
@@ -213,9 +225,16 @@ const AnimalForm = ({ open, handleClose, animal }) => {
                 <TextField type="number" label="Year" value={year} onChange={(e) => setYear(e.target.value)} />
               </div> : <></>}
           {!animal ? <TextField label="Note" value={note} onChange={(e) => setNote(e.target.value)} multiline style={{marginBottom:"1rem"}} /> : <></>}
-          <Button type="submit" variant="contained" className="bg-blue-500 hover:bg-blue-700 mt-4">
+          <div className="flex w-full justify-center">
+          <Button type="submit" variant="contained" className="bg-blue-500 hover:bg-blue-700 mt-4 w-full">
             {animal ? 'Update' : 'Submit'}
           </Button>
+          {animal ? 
+          <Button onClick={() => {deleteAnimal(animal._id); handleClose()}} variant="contained" className="bg-red-500 hover:bg-red-700 mb-4 mx-4 w-full">
+              Delete
+          </Button> :
+          <></>}
+          </div>
         </form>
       </div>
     </Modal>
@@ -269,7 +288,6 @@ const AnimalPage = (props) => {
     if (ownerId !== "") {
       getAnimals();
     }
-    console.log(props.search);
   }, [open, ownerId, props.search])
 
   return (

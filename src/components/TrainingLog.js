@@ -68,7 +68,7 @@ const TrainingLog = ({ log, onEdit, adminPage }) => {
         </div>
       </div>
       <div className="flex align-middle justify-end">
-        {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full">
+        {!adminPage ? <Button onClick={onEdit} variant="contained" className="bg-blue-500 hover:bg-blue-700 flex m-8 rounded-full ">
           Edit
         </Button> : <></>}
       </div>
@@ -113,6 +113,20 @@ const editLog = async (trainingLogId, description, hoursLogged) => {
           "trainingLogId": trainingLogId,
           "hours": hoursLogged,
           "note": description
+      })
+  })
+  console.log(res);
+  return res;
+}
+
+const deleteLog = async (trainingLogId) => {
+  let res = await fetch("/api/training", {
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          "trainingLogId": trainingLogId
       })
   })
   console.log(res);
@@ -260,9 +274,16 @@ const TrainingLogForm = ({ open, handleClose, editingLogId }) => {
                 <TextField type="number" label="Year" value={year} onChange={(e) => setYear(e.target.value)} />
               </div>}
               <TextField label="Description" style={{marginBottom:"1rem"}} value={description} onChange={(e) => setDescription(e.target.value)} multiline />
-              <Button type="submit" variant="contained" color="primary" className="mt-4">
+              <div className="flex">
+              <Button type="submit" variant="contained" color="primary" className="mt-4 w-full">
                 Submit
               </Button>
+              {editingLogId ?
+              <Button onClick={() => {deleteLog(editingLogId); handleClose();}} variant="contained" className="bg-red-500 hover:bg-red-700 flex m-8 rounded-full w-full">
+                Delete
+              </Button> : <></>
+              }
+              </div>
             </form>
       </div>
     </Modal>
@@ -325,7 +346,7 @@ const TrainingPage = (props) => {
             </Button> : <></>}
         </div>
         <div className="flex-col bg-zinc-400">
-            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId} />
+            <TrainingLogForm open={open} handleClose={handleClose} editingLogId={editingLogId}/>
             {trainingLoading ? <div>Loading</div> : <TrainingLogList logs={trainingLogs} onEdit={handleEdit} adminPage={props.adminPage} />}
         </div>
     </div>
