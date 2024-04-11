@@ -1,4 +1,5 @@
 import createUser from "../../../server/mongodb/actions/create/createUser";
+import deleteUser from "../../../server/mongodb/actions/delete/deleteUser";
 
 export default async function handler(req, res) {
     if (req.method == 'POST') {

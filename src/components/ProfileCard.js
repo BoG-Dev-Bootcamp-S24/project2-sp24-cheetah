@@ -20,12 +20,12 @@ const ProfileCard = (props) => {
     const handleDelete = async () => {
         handleClose(); 
         try {
-            await fetch("/api/admin/users", {
+            await fetch("/api/user", {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ userId: props.userId }) 
+                body: JSON.stringify({ "userId": props.userId }) 
             });
             
             props.refreshUsers();
@@ -75,7 +75,7 @@ const UsersList = ({ refreshUsers }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-5 ml-6 mt-4">
             {users.map(user => (
-                <ProfileCard key={user.userId} name={user.fullName} isAdmin={user.admin} userId={user.userId} refreshUsers={refreshUsers} />
+                <ProfileCard key={user._id} name={user.fullName} isAdmin={user.admin} userId={user._id} refreshUsers={refreshUsers} />
             ))}
         </div>
     )
