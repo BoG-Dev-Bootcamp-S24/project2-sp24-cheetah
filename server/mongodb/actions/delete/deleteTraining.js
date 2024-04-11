@@ -4,7 +4,6 @@ import TrainingLog from "../../models/TrainingLog";
 export default async function deleteTraining(data) {
     try {
         await connectDB();
-        console.log(findById(data?.trainingLogId));
         await TrainingLog.findByIdAndDelete(data?.trainingLogId);
         return true;
     } catch (e) {

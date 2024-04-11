@@ -1,4 +1,5 @@
 import createAnimal from "../../../server/mongodb/actions/create/createAnimal";
+import deleteAnimal from "../../../server/mongodb/actions/delete/deleteAnimal";
 import updateAnimalHours from "../../../server/mongodb/actions/update/updateAnimalHours";
 
 export default async function handler(req, res) {
