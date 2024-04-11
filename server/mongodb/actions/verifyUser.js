@@ -21,7 +21,8 @@ export default async function verifyUser(data) {
             e.name = "InvalidParametersError";
             throw e;
         }
-        if (user[0].password !== password) {
+        var bcrypt = require('bcryptjs');
+        if (bcrypt.compareSync(user[0].password, password)) {
             const e = new Error("User password incorrect");
             e.name = "InvalidParametersError";
             throw e;

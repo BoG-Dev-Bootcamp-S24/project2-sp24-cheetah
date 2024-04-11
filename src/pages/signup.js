@@ -1,6 +1,7 @@
 import Image from "next/image"
 import quarterCircle from "../../public/images/quarterCircle.png"
 import { useEffect, useState } from "react";
+import TopBar from "@/components/TopBar";
 
 export default function SignUp() {
     const [name, setName] = useState("");
@@ -44,7 +45,7 @@ export default function SignUp() {
     }
 
     return (
-        userName ?
+        !userName ?
         <>
             <TopBar/>
             <div className="flex flex-col items-center">
@@ -54,9 +55,11 @@ export default function SignUp() {
                 <input type="text" placeholder="Email" className="border-b-2 border-red-600 w-1/3 mt-6 text-xl"
                     onChange={e => setEmail(e.target.value)}/>
                 <input type="password" placeholder="Password" className="border-b-2 border-red-600 w-1/3 mt-6 text-xl"
-                    onChange={e => setPassword(e.target.value)}/>
+                    onChange={e => setPassword(e.target.value)} onMouseEnter={(e) => e.target.type="text"}
+                    onMouseLeave={(e) => e.target.type="password"}/>
                 <input type="password" placeholder="Confirm Password" className="border-b-2 border-red-600 w-1/3 mt-6 text-xl"
-                    onChange={e => setConfirmPassword(e.target.value)}/>
+                    onChange={e => setConfirmPassword(e.target.value)} onMouseEnter={(e) => e.target.type="text"}
+                    onMouseLeave={(e) => e.target.type="password"}/>
                 {diffPass ? <div className="h-1 w-1/3 text-xs">Passwords do not match</div> : <div className="h-1"></div>}
                 <div className="mt-6 flex flex-row w-1/3 items-center">
                     <input id="admin" type="checkbox" className="appearance-none cursor-pointer w-5 h-5 border-2 border-red-600
@@ -64,7 +67,7 @@ export default function SignUp() {
                             if (e.target.value === "on") setAdmin(true);
                             else setAdmin(false);
                         }}/>
-                    <label for="admin" className="ml-2 cursor-pointer">Admin Access</label>
+                    <label htmlFor="admin" className="ml-2 cursor-pointer">Admin Access</label>
                 </div>
                 {error ? <div className="h-0.5">Error creating account</div> : <div className="h-0.5"></div>}
                 <button className="bg-red-600 text-white mt-6 text-2xl pt-1 pb-1.5 px-56 rounded-xl"

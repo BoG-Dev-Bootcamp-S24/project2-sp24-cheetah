@@ -67,8 +67,9 @@ export default function Login() {
                 <div className="text-5xl font-bold mt-40">Login</div>
                 <input type="text" placeholder="Email" className="border-b-2 border-red-600 w-1/3 mt-8 text-xl"
                     onChange={(e) => setEmail(e.target.value)}/>
-                <input type="text" placeholder="Password" className="border-b-2 border-red-600 w-1/3 mt-6 text-xl"
-                    onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" placeholder="Password" className="border-b-2 border-red-600 w-1/3 mt-6 text-xl"
+                    onChange={(e) => setPassword(e.target.value)} onMouseEnter={(e) => e.target.type="text"}
+                    onMouseLeave={(e) => e.target.type="password"}/>
                 {failed ? <div className="h-0.5">Login Failed</div> : <div className="h-0.5"></div>}
                 <button className="bg-red-600 text-white mt-12 text-2xl pt-1 pb-1.5 px-56 rounded-xl"
                     onClick={login}>Log In</button>
